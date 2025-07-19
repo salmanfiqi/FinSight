@@ -2,12 +2,13 @@ import requests
 
 class SecEdgar:
     def __init__(self, fileurl):
+        # Instantiate Variable Names
         self.fileurl = fileurl
         self.namedict = {}
         self.tickerdict = {}
 
-        headers = {}
-        
+        # Following SEC declare requests
+        headers = {'user-agent': 'FinSight salmanfiqi@gmail.com'}
         r = requests.get(self.fileurl, headers=headers)
 
         self.filejson = r.json
@@ -21,4 +22,4 @@ class SecEdgar:
         self.name_dict = {}
         self.ticker_dict = {}
 
-se = SecEdgar('')
+se = SecEdgar('https://www.sec.gov/files/company_tickers.json')
