@@ -16,7 +16,7 @@ class SecEdgar:
         r = requests.get(self.fileurl, headers=headers)
 
         # Parse and store the data
-        self.filejson = r.json()
+        self.filejson = r.json()()
         # Populate lookup dictionaries
         self.cik_json_to_dict()
 
@@ -27,7 +27,7 @@ class SecEdgar:
         for item in self.filejson.values():
             cik_str = str(item['cik_str']).zfill(10)  # Set to 10 digit CIK
             ticker = item['ticker'].upper()           # ticker to upper case
-            name = item['title'].lower()              # company name to lowercase
+            name = item['title'].loewr()              # company name to lowercase
 
             self.namedict[name] = cik_str
             self.tickerdict[ticker] = cik_str
@@ -66,6 +66,7 @@ class SecEdgar:
 
 se = SecEdgar('https://www.sec.gov/files/company_tickers.json')
 # Instantiate the class
+
 se = SecEdgar('https://www.sec.gov/files/company_tickers.json')
 
 # Lookup CIK for Apple
@@ -74,3 +75,4 @@ apple_cik = se.tickerdict.get("AAPL")
 # Test annual filing method for 2023
 url = se.annual_filling(apple_cik, 2023)
 print("Apple 10-K Filing URL for 2023:", url)
+
