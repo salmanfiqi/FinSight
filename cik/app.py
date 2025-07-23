@@ -21,5 +21,14 @@ class SecEdgar:
     def cik_json_to_dict(self):
         self.name_dict = {}
         self.ticker_dict = {}
+    
+    def cik_json_to_dict(self):
+        for item in self.filejson.values():
+            cik_str = str(item['cik_str']).zfill(10)
+            ticker = item['ticker'].upper()
+            name = item['title'].lower()
+
+            self.name_dict[name] = cik_str
+            self.ticker_dict[ticker] = cik_str
 
 se = SecEdgar('https://www.sec.gov/files/company_tickers.json')
