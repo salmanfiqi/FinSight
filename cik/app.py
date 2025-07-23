@@ -11,7 +11,7 @@ class SecEdgar:
         headers = {'user-agent': 'FinSight salmanfiqi@gmail.com'}
         r = requests.get(self.fileurl, headers=headers)
 
-        self.filejson = r.json
+        self.filejson = r.json()
 
         print(r.text)
         print(self.filejson)
@@ -19,16 +19,13 @@ class SecEdgar:
         self.cik_json_to_dict()
 
     def cik_json_to_dict(self):
-        self.name_dict = {}
-        self.ticker_dict = {}
-    
-    def cik_json_to_dict(self):
         for item in self.filejson.values():
             cik_str = str(item['cik_str']).zfill(10)
             ticker = item['ticker'].upper()
-            name = item['title'].lower()
+            name = item['title'].loewr()
 
             self.name_dict[name] = cik_str
             self.ticker_dict[ticker] = cik_str
+
 
 se = SecEdgar('https://www.sec.gov/files/company_tickers.json')
